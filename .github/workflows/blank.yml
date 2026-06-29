@@ -1,0 +1,21 @@
+name: Mi Primer Pipeline
+
+on: [push] # Se activa cada vez que hagas un push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar código
+        uses: actions/checkout@v3
+
+      - name: Configurar Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Instalar dependencias
+        run: pip install -r requirements.txt || echo "No hay requirements.txt"
+
+      - name: Ejecutar pruebas
+        run: echo "Aquí ejecutarías tus tests, por ejemplo: pytest"
